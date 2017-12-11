@@ -1,0 +1,44 @@
+{
+    "name": "badtomcat/routing",
+    "type": "library",
+    "description": "bad tomcat Routing Component",
+    "keywords": ["routing", "router", "URL", "URI"],
+    "homepage": "https://github.com/badtomcat/routing",
+    "require": {
+        "php": ">=5.4",
+        "badtomcat/container":"dev-master",
+        "badtomcat/http":"dev-master",
+        "badtomcat/pipeline":"dev-master"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "badtomcat",
+            "email": "531164479@qq.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "phpunit/phpunit": "~5.0"
+    },
+    "autoload": {
+        "files": [],
+        "psr-4": {
+            "Badtomcat\\Routing\\": "src/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "https://github.com/badtomcat/http.git"
+        },
+        {
+            "type": "vcs",
+            "url":  "https://github.com/badtomcat/pipeline.git"
+        },
+        {
+            "type": "vcs",
+            "url":  "https://github.com/badtomcat/container.git"
+        }
+    ]
+}
