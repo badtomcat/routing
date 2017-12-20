@@ -6,9 +6,9 @@
     "homepage": "https://github.com/badtomcat/routing",
     "require": {
         "php": ">=5.4",
-        "badtomcat/container":"dev-master",
-        "badtomcat/http":"dev-master",
-        "badtomcat/pipeline":"dev-master"
+        "badtomcat/container":"~0.0.1",
+        "badtomcat/http":"~0.0.1",
+        "badtomcat/pipeline":"~0.0.1"
     },
     "license": "MIT",
     "authors": [
@@ -26,19 +26,5 @@
         "psr-4": {
             "Badtomcat\\Routing\\": "src/"
         }
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "https://github.com/badtomcat/http.git"
-        },
-        {
-            "type": "vcs",
-            "url":  "https://github.com/badtomcat/pipeline.git"
-        },
-        {
-            "type": "vcs",
-            "url":  "https://github.com/badtomcat/container.git"
-        }
-    ]
+    }
 }
