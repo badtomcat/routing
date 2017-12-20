@@ -172,7 +172,7 @@ class ControllerResolver
                 //解析方法参数
                 $args = $this->container->getDependencies($reflectionMethod->getParameters(),$context->getParameters());
                 //生成类并执行方法
-                $content =  $reflectionMethod->invokeArgs($this->container->build($class), $args);
+                $content =  $reflectionMethod->invokeArgs($this->container->make($class), $args);
                 return new Response($content);
             } catch (\Exception $e) {
                 return new Response('Call ' . $class . '::' . $method . ' failed.', 500);
