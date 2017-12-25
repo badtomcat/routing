@@ -182,6 +182,10 @@ class ControllerResolver
             try {
                 $arg = $this->resolverParameter($rc, $context);
                 $content = call_user_func_array($action, $arg);
+                if ($context instanceof Response)
+                {
+                    return $content;
+                }
                 return new Response($content);
             } catch (\Exception $e) {
                 return new Response($e->getMessage(), 500);
