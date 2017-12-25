@@ -71,7 +71,7 @@ class ControllerResolver
      * @param array $middleware middleware|middlewareGroups|middlewarePriority
      * @param $defNs
      */
-    public function __construct(Container $container, $middleware,$defNs)
+    public function __construct(Container $container, $middleware, $defNs)
     {
         $this->container = $container;
         $this->middlewareGroups = $middleware['middlewareGroups'];
@@ -157,7 +157,7 @@ class ControllerResolver
         if (is_string($action)) {
             $callback = explode("@", $action);
             if ($callback[0][0] != "\\") {
-                $class = $this->handleNamespace($route)."\\".$callback[0];
+                $class = $this->handleNamespace($route) . "\\" . $callback[0];
             } else {
                 $class = $callback[0];
             }
@@ -166,15 +166,16 @@ class ControllerResolver
                 $e = new InvalidActionException($class . ' Not found. class not exist');
                 throw $e;
             }
+
             try {
                 //反射方法实例
                 $reflectionMethod = new \ReflectionMethod($class, $method);
                 //解析方法参数
-                $args = $this->container->getDependencies($reflectionMethod->getParameters(),$context->getParameters());
+                $args = $this->container->getDependencies($reflectionMethod->getParameters(), $context->getParameters());
                 //生成类并执行方法
-                $content =  $reflectionMethod->invokeArgs($this->container->make($class), $args);
-                if ($context instanceof Response)
-                {
+                $content = $reflectionMethod->invokeArgs($this->container->make($class), $args);
+                if ($content instanceof Response) {
+
                     return $content;
                 }
                 return new Response($content);
@@ -186,8 +187,7 @@ class ControllerResolver
             try {
                 $arg = $this->resolverParameter($rc, $context);
                 $content = call_user_func_array($action, $arg);
-                if ($context instanceof Response)
-                {
+                if ($content instanceof Response) {
                     return $content;
                 }
                 return new Response($content);
@@ -230,7 +230,7 @@ class ControllerResolver
     {
         $arg = [];
         foreach ($rc->getParameters() as $parameter) {
-            $arg[] = $this->fixParameter($parameter,$request);
+            $arg[] = $this->fixParameter($parameter, $request);
         }
         return $arg;
     }
@@ -242,7 +242,7 @@ class ControllerResolver
      * @return Container|mixed|object
      * @throws \Exception
      */
-    private function fixParameter(ReflectionParameter $parameter,RequestContext $request)
+    private function fixParameter(ReflectionParameter $parameter, RequestContext $request)
     {
         if (!is_null($parameter->getClass())) {
             if ($parameter->getClass()->name == Container::class) {
